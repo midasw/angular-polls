@@ -1,0 +1,11 @@
+<h3>Add Friend</h3>
+
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()" novalidate>
+    <p>
+        <mat-form-field>
+            <input matInput type="email" formControlName="email" placeholder="E-mail address" />
+        </mat-form-field>
+        <button mat-raised-button color="primary" type="submit" [disabled]="!myForm.valid">Add</button>
+        <em *ngIf="success">Friend request sent!</em>
+    </p>
+</form>

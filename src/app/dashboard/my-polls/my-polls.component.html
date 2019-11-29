@@ -1,0 +1,5 @@
+<h3>My Polls:</h3>
+<ul>
+    <li *ngFor="let p of polls"><a [routerLink]="['/poll', p.pollID]">{{p.name}}</a></li>
+</ul>
+<p *ngIf="!polls?.length > 0"><em>It's empty over here. Why not <a routerLink="/create">create a poll</a>?</em></p>

@@ -1,0 +1,29 @@
+<h2>Register</h2>
+
+<form #registerForm="ngForm" (ngSubmit)="onSubmit()">
+    <p>{{ model | json}}</p>
+    <p>
+        <mat-form-field>
+            <input matInput placeholder="Email" type="email" required minlength="2" [(ngModel)]="model.email"
+                name="email" />
+        </mat-form-field>
+    </p>
+    <p>
+        <mat-form-field>
+            <input matInput placeholder="Password" type="password" required [(ngModel)]="model.password" name="password" />
+        </mat-form-field>
+    </p>
+    <p>
+        <mat-form-field>
+            <input matInput placeholder="Password confirmation" type="password" required [(ngModel)]="model.passwordConfirmation" name="passwordConfirmation" />
+        </mat-form-field>
+    </p>
+    <p>
+        <mat-form-field>
+            <input matInput placeholder="Name" type="text" required minlength="2" [(ngModel)]="model.name"
+                name="name" />
+        </mat-form-field>
+    </p>
+    <p><button mat-raised-button color="primary" type="submit"
+        [disabled]="!registerForm.form.valid || submitted">Submit</button></p>
+</form>

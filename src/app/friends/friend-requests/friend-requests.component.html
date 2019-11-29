@@ -1,0 +1,8 @@
+<h3>Friend Requests</h3>
+<ul>
+    <li *ngFor="let f of friendRequests">{{f.name}}
+        <button mat-raised-button matSuffix color="accent" type="button">Accept</button>
+        <button mat-stroked-button matSuffix color="warn" type="button">Decline</button>
+    </li>
+</ul>
+<p *ngIf="!friendRequests?.length > 0"><em>You have no friend requests at the moment (sad face).</em></p>

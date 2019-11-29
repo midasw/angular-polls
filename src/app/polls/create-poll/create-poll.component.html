@@ -1,0 +1,21 @@
+<h2>Create Poll</h2>
+
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+    <p>
+        <mat-form-field>
+            <input matInput type="text" formControlName="name" placeholder="Poll Name" />
+        </mat-form-field>
+    </p>
+    <div formArrayName="formArray">
+        <div *ngFor="let control of myForm.controls['formArray'].controls; let i = index" [formGroupName]="i">
+            <mat-form-field>
+                <input matInput type="text" formControlName="answer" placeholder="Answer"/>
+                <button mat-button matSuffix color="warn" type="button" (click)="delInput(i)" *ngIf="myForm.controls['formArray'].controls.length > 2">Delete</button>
+            </mat-form-field>
+        </div>
+    </div>
+    <p>
+        <button mat-stroked-button type="button" (click)="addInput()">Add Answer</button>
+        <button mat-raised-button color="primary" type="submit" [disabled]="!myForm.valid">Save</button>
+    </p>
+</form>
