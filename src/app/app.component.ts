@@ -16,9 +16,5 @@ export class AppComponent {
     this._authService.isLoggedin.subscribe(result => {
       this.isLoggedin = result;
     });
-
-/*    if (this.isLoggedin == true && _router.url == "/") {
-      this._router.navigate(['/dashboard']);
-    }*/
   }
 }

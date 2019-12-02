@@ -1,18 +1,16 @@
 <h2>Login</h2>
-
+<p class="error">{{errorMsg}}</p>
 <form #loginForm="ngForm" (ngSubmit)="onSubmit()">
-    <p>{{ model | json}}</p>
     <p>
         <mat-form-field>
-            <input matInput placeholder="Email" type="email" required minlength="2" [(ngModel)]="model.email"
-                name="username" />
+            <input matInput placeholder="Email" type="email" name="email" required email [(ngModel)]="model.email" />
         </mat-form-field>
     </p>
     <p>
         <mat-form-field>
-            <input matInput placeholder="Password" type="password" required [(ngModel)]="model.password" name="password" />
+            <input matInput placeholder="Password" type="password" name="password" required [(ngModel)]="model.password" />
         </mat-form-field>
     </p>
     <p><button mat-raised-button color="primary" type="submit"
-        [disabled]="!loginForm.form.valid || submitted">Submit</button></p>
+        [disabled]="!loginForm.form.valid">Submit</button></p>
 </form>

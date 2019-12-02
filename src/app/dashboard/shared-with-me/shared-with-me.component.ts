@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { PollsService } from 'src/app/polls/polls.service';
+import { Poll } from 'src/app/polls/models/poll.model';
 
 @Component({
   selector: 'app-shared-with-me',
@@ -7,7 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SharedWithMeComponent implements OnInit {
 
-  constructor() { }
+  polls: Poll[];
+
+  constructor(private _pollsService: PollsService) {
+    this._pollsService.getSharedPolls().subscribe(result => {
+      this.polls = result;
+    });
+  }
 
   ngOnInit() {
   }

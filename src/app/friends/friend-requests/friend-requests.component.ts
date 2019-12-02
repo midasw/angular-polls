@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FriendsService } from '../friends.service';
-import { GetUserDto } from '../models/get-user-dto.model';
+import { GetFriendDto } from '../models/get-friend-dto.model';
+import { Friend } from '../models/friend.model';
 
 @Component({
   selector: 'app-friend-requests',
@@ -9,13 +10,29 @@ import { GetUserDto } from '../models/get-user-dto.model';
 })
 export class FriendRequestsComponent implements OnInit {
 
-  friendRequests: GetUserDto[];
+  friendRequests: GetFriendDto[];
 
   constructor(private _friendsService: FriendsService) {
-    _friendsService.getFriendRequests().subscribe(result => {
-      console.log(result);
+    this.getFriendRequests();
+  }
+
+  getFriendRequests() {
+    this._friendsService.getFriendRequests().subscribe(result => {
       this.friendRequests = result;
     });
+  }
+
+  accept(dto: GetFriendDto) {
+    let friend = new Friend(dto.friendID, dto.sender.userID, dto.receiver.userID, "Accepted");
+    this._friendsService.updateFriend(dto.friendID, friend).subscribe(result =>{
+      this.getFriendRequests();
+    });
+  }
+
+  remove(dto: GetFriendDto) {
+    this._friendsService.deleteFriend(dto.friendID).subscribe(result =>{
+      this.getFriendRequests();
+    })
   }
 
   ngOnInit() {

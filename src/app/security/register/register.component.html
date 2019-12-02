@@ -1,10 +1,13 @@
 <h2>Register</h2>
 
-<form #registerForm="ngForm" (ngSubmit)="onSubmit()">
-    <p>{{ model | json}}</p>
+<p class="error">{{errorMsg}}</p>
+
+<p *ngIf="success">An email has been sent to <strong>{{model.email}}</strong> containing a verification link. Click this link to confirm your account and start making polls!</p>
+
+<form *ngIf="!success" #registerForm="ngForm" (ngSubmit)="onSubmit()">
     <p>
         <mat-form-field>
-            <input matInput placeholder="Email" type="email" required minlength="2" [(ngModel)]="model.email"
+            <input matInput placeholder="Email" type="email" required email [(ngModel)]="model.email"
                 name="email" />
         </mat-form-field>
     </p>
@@ -25,5 +28,5 @@
         </mat-form-field>
     </p>
     <p><button mat-raised-button color="primary" type="submit"
-        [disabled]="!registerForm.form.valid || submitted">Submit</button></p>
+        [disabled]="!registerForm.form.valid">Submit</button></p>
 </form>

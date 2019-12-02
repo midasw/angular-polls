@@ -8,6 +8,7 @@ import { CreatePollDto } from './models/create-poll-dto.model';
 import { GetPollDto } from './models/get-poll-dto.model';
 import { PollVote } from './models/poll-vote.model';
 import { PollUser } from './models/poll-user.model';
+import { GetPollUserDto } from './models/get-poll-user-dto.model';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +19,10 @@ export class PollsService {
 
   getPolls(): Observable<Poll[]> {
     return this.http.get<Poll[]>("https://localhost:44345/api/Poll");
+  }
+
+  getSharedPolls(): Observable<Poll[]> {
+    return this.http.get<Poll[]>("https://localhost:44345/api/Poll/shared");
   }
 
   createPoll(dto: CreatePollDto): Observable<GetPollDto> {
@@ -36,7 +41,11 @@ export class PollsService {
     return this.http.delete<PollVote>("https://localhost:44345/api/PollVote/" + voteID);
   }
 
-  getPollUsers(pollID: number): Observable<PollUser[]> {
-    return this.http.get<PollUser[]>("https://localhost:44345/api/PollUser/" + pollID);
+  getPollUsers(pollID: number): Observable<GetPollUserDto[]> {
+    return this.http.get<GetPollUserDto[]>("https://localhost:44345/api/PollUser/" + pollID);
+  }
+
+  addPollUser(pollUser: PollUser): Observable<PollUser> {
+    return this.http.post<PollUser>("https://localhost:44345/api/PollUser", pollUser);
   }
 }

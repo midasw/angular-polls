@@ -10,7 +10,8 @@ import { AuthenticateService } from '../services/authenticate.service';
 export class RegisterComponent implements OnInit {
 
   model: UserRegister = new UserRegister('', '', '', '');
-  submitted: boolean = false;
+  success: boolean = false;
+  errorMsg: string = '';
 
   constructor(private _authenticateService: AuthenticateService) { }
 
@@ -18,7 +19,11 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit() {
-    this.submitted = true;
-    this._authenticateService.register(this.model).subscribe();
+    this._authenticateService.register(this.model).subscribe(result => {
+      this.success = true;
+    },
+    error => {
+      this.errorMsg = error.error.message
+    });
   }
 }

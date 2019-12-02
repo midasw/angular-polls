@@ -1,1 +1,16 @@
 <h3>Poll Participants:</h3>
+<p>
+    <em>
+        <ng-container *ngFor="let pu of pollUsers; let isLast=last">
+            <strong *ngIf="pu.isOwner" matTooltip="Owner">{{pu.user.name}}</strong><ng-container *ngIf="!pu.isOwner">{{pu.user.name}}</ng-container>{{isLast ? '' : ', '}}
+        </ng-container>
+    </em>
+</p>
+<ng-container *ngIf="invitableFriends?.length > 0">
+    <h3>Invite Friends</h3>
+    <ul>
+        <li *ngFor="let f of invitableFriends">{{f.name}}
+            <button mat-raised-button matSuffix color="accent" type="button" (click)="invite(f)">Add</button>
+        </li>
+    </ul>
+</ng-container>

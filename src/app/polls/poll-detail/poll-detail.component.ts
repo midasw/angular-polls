@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { PollsService } from '../polls.service';
 import { ActivatedRoute } from '@angular/router';
 import { GetPollDto } from '../models/get-poll-dto.model';
-import { Observable } from 'rxjs';
 import { AuthenticateService } from 'src/app/security/services/authenticate.service';
 import { PollAnswer } from '../models/poll-answer.model';
 import { PollVote } from '../models/poll-vote.model';
@@ -14,27 +13,28 @@ import { PollVote } from '../models/poll-vote.model';
 })
 export class PollDetailComponent implements OnInit {
 
-poll: GetPollDto;
-  //poll: Observable<GetPollDto>;
+  poll: GetPollDto;
   userID: number;
   pollID: number;
+  numTotalVotes: number;
 
-  constructor(private route: ActivatedRoute, private _pollsService: PollsService, private _authService: AuthenticateService) {
+  constructor(private _route: ActivatedRoute, private _pollsService: PollsService, private _authService: AuthenticateService) {
     this.userID = this._authService.getUserID();
-  }
-
-  onCheckBoxChange(value) {
-    console.log(value);
   }
 
   getPoll() {
     this._pollsService.getPoll(this.pollID).subscribe(p => {
       this.poll = p;
+
+      this.numTotalVotes = 0;
+      p.answers.forEach((a, i) => {
+        this.numTotalVotes += a.votes.length;
+      })
     })
   }
 
   ngOnInit() {
-    this.pollID = Number(this.route.snapshot.paramMap.get("id"));
+    this.pollID = Number(this._route.snapshot.paramMap.get("id"));
     this.getPoll();
   }
 
@@ -42,21 +42,24 @@ poll: GetPollDto;
     return a.votes.some(v => v.user.userID === this.userID);
   }
 
+  getBarLength(a: PollAnswer) {
+    if (this.numTotalVotes)
+      return a.votes.length / this.numTotalVotes * 100 + "%";
+    return 0;
+  }
+
   getVoters(a: PollAnswer) {
     let tipText = '';
     a.votes.forEach(v => {
-      tipText += v.user.name + '\n';
+      tipText += v.user.name + '\r\n';
     })
     return tipText;
   }
 
   vote(a: PollAnswer, $event: any) {
-    $event.preventDefault();
-
-    if ($event.target.checked)
+    if ($event.checked)
     {
       let vote = new PollVote(0, a.answerID, this.userID);
-      console.log(vote);
       this._pollsService.addVote(vote).subscribe(result => {
         this.getPoll();
       });

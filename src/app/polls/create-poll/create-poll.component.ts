@@ -50,12 +50,9 @@ export class CreatePollComponent implements OnInit {
       answersArray.push(a.answer);
     });
 
-    //console.log(answersArray);
-
     let dto = new CreatePollDto(name, answersArray);
 
     this._pollsService.createPoll(dto).subscribe(result => {
-      console.log(result);
       this._router.navigate(['/poll/' + result.pollID]);
     }, error => {
       console.log(error);

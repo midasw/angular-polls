@@ -4,6 +4,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { MyPollsComponent } from './my-polls/my-polls.component';
 import { RouterModule } from '@angular/router';
 import { SharedWithMeComponent } from './shared-with-me/shared-with-me.component';
+import { FriendsModule } from '../friends/friends.module';
 
 
 
@@ -11,7 +12,8 @@ import { SharedWithMeComponent } from './shared-with-me/shared-with-me.component
   declarations: [DashboardComponent, MyPollsComponent, SharedWithMeComponent],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    FriendsModule
   ]
 })
 export class DashboardModule { }

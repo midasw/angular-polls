@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   model: UserLogin = new UserLogin('', '');
-  submitted: boolean = false;
+  errorMsg: string = '';
 
   constructor(private _router: Router, private _authenticateService: AuthenticateService) { }
 
@@ -19,7 +19,6 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    this.submitted = true;
     this._authenticateService.authenticate(this.model).subscribe(result => {
       localStorage.setItem("token", result.token);
       localStorage.setItem("userID", result.userID.toString());
@@ -28,6 +27,7 @@ export class LoginComponent implements OnInit {
       this._router.navigate(['/dashboard']);
     }, error => {
       console.log(error);
+      this.errorMsg = error.error.message;
     });
   }
 }
