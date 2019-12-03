@@ -17,6 +17,7 @@ export class PollDetailComponent implements OnInit {
   userID: number;
   pollID: number;
   numTotalVotes: number;
+  errorMsg: string = '';
 
   constructor(private _route: ActivatedRoute, private _pollsService: PollsService, private _authService: AuthenticateService) {
     this.userID = this._authService.getUserID();
@@ -30,6 +31,9 @@ export class PollDetailComponent implements OnInit {
       p.answers.forEach((a, i) => {
         this.numTotalVotes += a.votes.length;
       })
+    },
+    error => {
+      this.errorMsg = error.error.message;
     })
   }
 

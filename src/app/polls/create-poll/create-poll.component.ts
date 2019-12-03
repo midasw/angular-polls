@@ -26,7 +26,7 @@ export class CreatePollComponent implements OnInit {
 
   initItemRow() {
     return this.fb.group({
-      answer: ['']
+      answer: ['', [Validators.required]]
     });
   }
 

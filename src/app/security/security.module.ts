@@ -7,10 +7,11 @@ import { RegisterComponent } from './register/register.component';
 import { ActivateComponent } from './activate/activate.component';
 import { RouterModule } from '@angular/router';
 import { LogoutComponent } from './logout/logout.component';
+import { InvitationComponent } from './invitation/invitation.component';
 
 
 @NgModule({
-  declarations: [LoginComponent, RegisterComponent, ActivateComponent, LogoutComponent],
+  declarations: [LoginComponent, RegisterComponent, ActivateComponent, LogoutComponent, InvitationComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,

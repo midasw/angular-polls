@@ -8,15 +8,19 @@ import { LogoutComponent } from './security/logout/logout.component';
 import { CreatePollComponent } from './polls/create-poll/create-poll.component';
 import { ViewPollComponent } from './polls/view-poll/view-poll.component';
 import { FriendsComponent } from './friends/friends/friends.component';
+import { HomeComponent } from './home/home/home.component';
+import { InvitationComponent } from './security/invitation/invitation.component';
 
 
 const routes: Routes = [
+  { path: '', component: HomeComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'friends', component: FriendsComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'logout', component: LogoutComponent },
   { path: 'activate/:guid', component: ActivateComponent },
+  { path: 'invitation/:guid', component: InvitationComponent },
   { path: 'create', component: CreatePollComponent },
   { path: 'poll/:id', component: ViewPollComponent },
 ];

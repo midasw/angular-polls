@@ -1,6 +1,6 @@
 <h2>Login</h2>
 <p class="error">{{errorMsg}}</p>
-<form #loginForm="ngForm" (ngSubmit)="onSubmit()">
+<form #loginForm="ngForm" (ngSubmit)="onSubmit()" class="narrow">
     <p>
         <mat-form-field>
             <input matInput placeholder="Email" type="email" name="email" required email [(ngModel)]="model.email" />
@@ -11,6 +11,6 @@
             <input matInput placeholder="Password" type="password" name="password" required [(ngModel)]="model.password" />
         </mat-form-field>
     </p>
-    <p><button mat-raised-button color="primary" type="submit"
-        [disabled]="!loginForm.form.valid">Submit</button></p>
+    <p><button mat-raised-button color="accent" type="submit"
+        [disabled]="!loginForm.form.valid">Login</button></p>
 </form>

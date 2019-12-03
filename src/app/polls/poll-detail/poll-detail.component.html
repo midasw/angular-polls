@@ -1,9 +1,14 @@
-<h3>{{ poll?.name }}</h3>
-<ul>
-    <li *ngFor="let a of poll?.answers">
-        <mat-checkbox [checked]="isChecked(a)" (change)="vote(a, $event)">
-            {{a.answer}} - <em matTooltipPosition="after" matTooltipClass="my-tooltip" [matTooltip]="getVoters(a)">{{a.votes.length}} votes</em>
-        </mat-checkbox>
-        <span class="poll-bar" [style.width]="getBarLength(a)"></span>
-    </li>
-</ul>
+<p *ngIf="errorMsg">{{errorMsg}}</p>
+
+<ng-container *ngIf="!errorMsg">
+    <h2>{{ poll?.name }}</h2>
+    <ul class="poll">
+        <li *ngFor="let a of poll?.answers">
+            <mat-checkbox [checked]="isChecked(a)" (change)="vote(a, $event)">
+                {{a.answer}} - <em matTooltipPosition="after" matTooltipClass="my-tooltip" [matTooltip]="getVoters(a)">{{a.votes.length}} votes</em>
+            </mat-checkbox>
+            <span class="poll-bar" [style.width]="getBarLength(a)"></span>
+        </li>
+    </ul>
+    <app-poll-users></app-poll-users>
+</ng-container>

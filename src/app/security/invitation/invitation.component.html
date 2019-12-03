@@ -1,16 +1,8 @@
-<h2>Register</h2>
+<h2>Set Up Your Account</h2>
 
 <p class="error">{{errorMsg}}</p>
 
-<p *ngIf="success">An email has been sent to <strong>{{model.email}}</strong> containing a verification link. Click this link to confirm your account and start making polls!</p>
-
-<form *ngIf="!success" #registerForm="ngForm" (ngSubmit)="onSubmit()" class="narrow">
-    <p>
-        <mat-form-field>
-            <input matInput placeholder="Email" type="email" required email [(ngModel)]="model.email"
-                name="email" />
-        </mat-form-field>
-    </p>
+<form *ngIf="!success" #setupForm="ngForm" (ngSubmit)="onSubmit()" class="narrow">
     <p>
         <mat-form-field>
             <input matInput placeholder="Password" type="password" required [(ngModel)]="model.password" name="password" />
@@ -28,5 +20,5 @@
         </mat-form-field>
     </p>
     <p><button mat-raised-button color="accent" type="submit"
-        [disabled]="!registerForm.form.valid">Register</button></p>
+        [disabled]="!setupForm.form.valid">Continue</button></p>
 </form>

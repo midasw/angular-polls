@@ -10,12 +10,12 @@
         <div *ngFor="let control of myForm.controls['formArray'].controls; let i = index" [formGroupName]="i">
             <mat-form-field>
                 <input matInput type="text" formControlName="answer" placeholder="Answer"/>
-                <button mat-button matSuffix color="warn" type="button" (click)="delInput(i)" *ngIf="myForm.controls['formArray'].controls.length > 2">Delete</button>
+                <button mat-button matSuffix color="warn" type="button" (click)="delInput(i)" *ngIf="myForm.controls['formArray'].controls.length > 2"><mat-icon>clear</mat-icon> Remove</button>
             </mat-form-field>
         </div>
     </div>
     <p>
         <button mat-stroked-button type="button" (click)="addInput()">Add Answer</button>
-        <button mat-raised-button color="primary" type="submit" [disabled]="!myForm.valid">Save</button>
+        <button mat-raised-button color="accent" type="submit" [disabled]="!myForm.valid">Create</button>
     </p>
 </form>

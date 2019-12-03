@@ -8,8 +8,9 @@
 </p>
 <ng-container *ngIf="invitableFriends?.length > 0">
     <h3>Invite Friends</h3>
-    <ul>
-        <li *ngFor="let f of invitableFriends">{{f.name}}
+    <ul class="invite-list">
+        <li *ngFor="let f of invitableFriends">
+            <span><mat-icon>person_pin</mat-icon> {{f.name}}</span>
             <button mat-raised-button matSuffix color="accent" type="button" (click)="invite(f)">Add</button>
         </li>
     </ul>

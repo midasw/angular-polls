@@ -10,9 +10,10 @@ import { DashboardModule } from './dashboard/dashboard.module';
 import { HttpClientModule } from '@angular/common/http';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SecurityInterceptor } from './security/security.interceptor';
-import { MatFormFieldModule, MatInputModule, MatButtonModule } from '@angular/material';
+import { MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule } from '@angular/material';
 import { PollsModule } from './polls/polls.module';
 import { FriendsModule } from './friends/friends.module';
+import { HomeModule } from './home/home.module';
 
 @NgModule({
   declarations: [
@@ -27,9 +28,10 @@ import { FriendsModule } from './friends/friends.module';
     DashboardModule,
     FormsModule,
     ReactiveFormsModule,
-    MatFormFieldModule, MatInputModule, MatButtonModule,
+    MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule,
     PollsModule,
-    FriendsModule
+    FriendsModule,
+    HomeModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

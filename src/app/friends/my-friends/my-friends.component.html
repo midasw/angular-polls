@@ -1,5 +1,4 @@
-<h3>My Friends</h3>
-<ul>
-    <li *ngFor="let f of friends">{{f.name}} <em><{{f.email}}></em></li>
+<ul class="friends-list">
+    <li *ngFor="let f of friends"><mat-icon>person_pin</mat-icon> {{f.name}} <em><{{f.email}}></em></li>
 </ul>
 <p *ngIf="!friends?.length > 0"><em>You haven't made any friends yet (sad face).</em></p>

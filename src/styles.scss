@@ -1,11 +1,235 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import url("https://fonts.googleapis.com/css?family=Fira+Sans&display=swap");
+
+$color-light: #fcfcfc;
+$color-silver: silver;
+$color-silver-light: #eee;
+$color-dark: #666;
+$color-pink: #ff4081;
 
 body {
-    font: 90% sans-serif;
+  margin: 0;
+  padding: 0;
+  font: 90% "Fira Sans", Arial, sans-serif;
+  background: $color-light;
+}
+
+h2 {
+  font-size: 2em;
+  text-align: center;
+}
+
+h2,
+h3 {
+  border-bottom: 1px solid $color-silver;
+  padding-bottom: 1em;
+}
+h3 {
+  padding-top: 1em;
+}
+
+li {
+  padding: 0.15em 0;
 }
 
 .my-tooltip {
-    white-space: pre-line;
-    max-width: 500px !important;
+  white-space: pre-line;
+  max-width: 500px !important;
+}
+
+main {
+  border: 1px solid $color-silver;
+  border-radius: 1em;
+  max-width: 700px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: 3em 3em;
+  background: white;
+  box-shadow: 0px 5px 5px $color-pink;
+  margin-bottom: 3em;
+}
+
+a {
+  transition: all 0.3s ease;
+}
+a:link,
+a:visited {
+  color: $color-pink;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+  color: $color-dark;
+}
+
+header {
+  padding: 1em;
+  margin-bottom: 2em;
+  a:link,
+  a:visited {
+    color: $color-dark;
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+  li {
+    padding: 0;
+  }
+}
+
+nav {
+  display: flex;
+  margin: 0 auto;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.header-left {
+  justify-content: flex-start;
+  flex: 1 1 auto;
+  li {
+    margin-right: 1em;
+  }
+}
+
+.header-right {
+  justify-content: flex-end;
+  flex: 0 1 auto;
+  li {
+    margin-left: 1em;
+  }
+  a {
+    border: 1px solid $color-silver;
+    padding: 0.3em 0.5em;
+    border-radius: 3px;
+  }
+  a:hover {
+    background: $color-silver-light;
+    text-decoration: none;
+  }
+  a:active {
+    border-color: $color-pink;
+  }
+}
+ul {
+  margin: 0;
+  padding: 0;
+  list-style-position: inside;
+}
+nav ul {
+  display: flex;
+  align-items: center;
+  list-style-type: none;
+}
+
+.poll {
+  list-style-type: none;
+}
+
+mat-form-field {
+  width: 100%;
+}
+mat-icon {
+  vertical-align: middle;
+}
+
+.invite-list {
+  width: 50%;
+  li {
+    display: flex;
+    align-items: center;
+    span {
+      justify-content: flex-start;
+      flex: 1 1 auto;
+    }
+    button {
+      justify-content: flex-end;
+      flex: 0 1 auto;
+    }
+  }
+}
+
+.friends-list {
+  list-style-type: none;
+  li {
+    padding: 0.5em 0;
+  }
+}
+
+.narrow {
+  margin: 0 auto;
+  width: 40%;
+}
+
+#logo {
+  font-size: 1.5em;
+  a:link,
+  a:visited {
+    color: $color-pink;
+  }
+  a:hover {
+    text-decoration: none;
+  }
+}
+
+#angular-logo {
+  text-align: center;
+}
+
+.wrapper {
+  display: flex;
+}
+.section {
+  width: 50%;
+}
+
+@media screen and (max-width: 640px) {
+  main {
+    border-radius: 0;
+    border-width: 1px 0;
+  }
+  .wrapper {
+    display: block;
+  }
+  .section, .invite-list, .narrow {
+    width: auto;
+  }
+  nav {
+    display: block;
+    ul {
+      display: block;
+      width: 100%;
+      li {
+        width: 100%;
+        text-align: center;
+        margin: 0;
+      }
+    }
+  }
+  header {
+    padding: 0;
+    background: $color-dark;
+  }
+  .header-left,
+  .header-right {
+    li {
+      margin: 0;
+    }
+    a {
+      border: none;
+      text-decoration: none;
+      display: block;
+      padding: 0.7em 0;
+    }
+    a:link,
+    a:visited {
+      color: $color-light;
+      text-decoration: none;
+    }
+    a:hover {
+      background: $color-silver;
+    }
+  }
 }

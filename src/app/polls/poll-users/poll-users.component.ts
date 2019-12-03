@@ -25,21 +25,24 @@ export class PollUsersComponent implements OnInit {
   }
 
   getPollUsers() {
-    let pollUsers;
-
     this._pollService.getPollUsers(this.pollID).subscribe(result =>
     {
-      pollUsers = result;
-      this.pollUsers = pollUsers;
+      this.pollUsers = result;
 
-      this._friendsService.getFriends().subscribe(result =>
+      let userID = +localStorage.getItem("userID");
+      let isOwner = this.pollUsers.find(pu => pu.isOwner && pu.user.userID == userID) ? true : false;
+
+      if (isOwner)
       {
-        this.invitableFriends = result.filter(function(f){
-          return pollUsers.filter(function(pu){
-             return pu.user.userID == f.userID;
-          }).length == 0
+        this._friendsService.getFriends().subscribe(result =>
+        {
+          this.invitableFriends = result.filter(function(f){
+            return this.pollUsers.filter(function(pu){
+              return pu.user.userID == f.userID;
+            }).length == 0
+          }, this);
         });
-      });
+      }
     });
   }
 
