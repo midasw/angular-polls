@@ -2,7 +2,7 @@
 <p>
     <em>
         <ng-container *ngFor="let pu of pollUsers; let isLast=last">
-            <strong *ngIf="pu.isOwner" matTooltip="Owner">{{pu.user.name}}</strong><ng-container *ngIf="!pu.isOwner">{{pu.user.name}}</ng-container>{{isLast ? '' : ', '}}
+            <strong *ngIf="pu.isOwner" matTooltip="Poll owner">{{pu.user.name}}</strong><ng-container *ngIf="!pu.isOwner">{{pu.user.name}}</ng-container>{{isLast ? '' : ', '}}
         </ng-container>
     </em>
 </p>
